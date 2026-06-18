@@ -129,7 +129,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.jpg" />
         <meta name="keywords" content={process.env.NEXT_PUBLIC_KEYWORDS} />
-        <meta name="og:image" content="/img/thumbnail.png" />
+        <meta name="og:image" content="http://anda.ninja/img/thumbnail.png" />
         <meta
           property="og:site_name"
           name="og:site_name"
