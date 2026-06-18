@@ -1,43 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-
-import Ascii from "@/components/Ascii";
-
-import AButton from "@/components/a-button";
-
-import ASocials from "@/components/a-socials";
-import AServicesList from "@/components/a-services-list";
-
-import { ArticleType } from "@/data/types/blog";
-
-import useStore from "@/store/global";
-
-import data from "@/data/chals.json";
+import { motion } from "motion/react";
 
 import { useTranslation } from "react-i18next";
 
+import Ascii from "@/components/Ascii";
+import AButton from "@/components/a-button";
+import ASocials from "@/components/a-socials";
+
+// import useStore from "@/store/global";
+
 const Home = () => {
   const { t } = useTranslation();
-
-  const { lang } = useStore((state) => ({ lang: state.lang }));
-
-  const handleScrollTo = (e: any, anchor: string) => {
-    e.preventDefault();
-    const container = document.querySelector("main");
-    const domElement = document.querySelector(anchor);
-    if (container && domElement) {
-      container.scroll({
-        top:
-          container.scrollTop +
-          (domElement.getBoundingClientRect().top || 0) -
-          120,
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-  };
+  // const { lang } = useStore((state) => ({ lang: state.lang }));
 
   const creations = [
     {
@@ -64,7 +40,7 @@ const Home = () => {
     {
       name: "RTFKT",
       description: "Crypto & NFT Minting",
-      url: "https://web.archive.org/web/20210616144208/https://cryptopunk.rtfkt.com/",
+      url: "https://web.archive.org/web/20210616144208/https%3A%2F%2Fcryptopunk.rtfkt.com%2F",
       img: "/img/b2b/cryptopunk.jpeg",
       techs: ["VueJS", "lit-element", "WebGL", "web3js", "OnChain DB"],
     },
@@ -119,26 +95,38 @@ const Home = () => {
     },
   ];
 
-  const formatDate = (f: ArticleType) => {
-    function pad(num, size: number = 2) {
-      num = num.toString();
-      while (num.length < size) num = "0" + num;
-      return num;
+  const handleScrollTo = (e: any, anchor: string) => {
+    e.preventDefault();
+    const container = document.querySelector("main");
+    const domElement = document.querySelector(anchor);
+    if (container && domElement) {
+      container.scroll({
+        top:
+          container.scrollTop +
+          (domElement.getBoundingClientRect().top || 0) -
+          120,
+        left: 0,
+        behavior: "smooth",
+      });
     }
-    const date = new Date(f.createdat);
-    const day = pad(date.getDate());
-    const month = pad(date.getMonth() + 1);
-    const year = pad(date.getFullYear());
-    return day + "/" + month + "/" + year;
   };
-
-  const { chals } = data;
-  const visibleChals = () => chals.filter((c) => !c.hidden);
 
   return (
     <>
       <div className="reading mb-2">
-        <Ascii fileName="anda-ninja" color="0F0" className="-z-10 h-0" />
+        <motion.div
+          initial={{ translateY: 64, opacity: 0 }}
+          animate={{
+            translateY: 0,
+            opacity: 1,
+            transition: {
+              delay: 2,
+              duration: 1,
+            },
+          }}
+        >
+          <Ascii fileName="anda-ninja" color="0F0" className="-z-10 h-0" />
+        </motion.div>
         <div className="flex flex-col max-h-[calc(100dvh-80px)]">
           <div className="h-[30dvh]" />
           <h2 className="title text-center">{t("dev.role")}</h2>
@@ -234,11 +222,19 @@ const Home = () => {
 
       <div className="reading" id="contact">
         <div className="flex flex-col gap-4">
-          <img
+          <motion.img
             src="./img/avatar.jpeg"
             alt="me"
             width={128}
             className="rounded-full mx-auto z-11 relative"
+            initial={{ translateY: 64, opacity: 0 }}
+            whileInView={{
+              translateY: 0,
+              opacity: 1,
+              transition: {
+                duration: 1,
+              },
+            }}
           />
           <h2 className="title text-center mb-6">{t("about.title")}</h2>
           <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md">

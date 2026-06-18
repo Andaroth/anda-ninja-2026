@@ -187,6 +187,10 @@ main h3.title a:hover {
     text-decoration: none;
 }
 
+a.creation:hover {
+    text-decoration: none;
+}
+
 main h3.title strong {
     color: white;
 }

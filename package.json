@@ -10,6 +10,7 @@
     "classnames": "^2.5.1",
     "i18next": "^23.15.1",
     "mathjs": "^13.0.2",
+    "motion": "^12.40.0",
     "next": "latest",
     "react": "18.2.0",
     "react-device-detect": "^2.2.3",

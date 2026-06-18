@@ -20,7 +20,6 @@ const AGlobe: FC = () => {
       const altDelta = container.scrollTop / 5000;
       if (globeElement?.current) {
         const el = globeElement.current as any;
-        console.log("el", latDelta, altDelta);
         el.pointOfView({
           lat: 30 - altDelta * 30,
           lng: 4 + latDelta,

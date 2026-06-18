@@ -8,6 +8,8 @@ import AYoutubeIcon from "@/components/a-icons/youtube";
 import AGithubIcon from "@/components/a-icons/github";
 import SCIcon from "@/components/a-icons/soundcloud";
 
+import { motion } from "motion/react";
+
 const ASocials = () => {
   const socials = [
     // { label: "TikTok", url: "https://www.tiktok.com/@anda_pirate", img: null, children: <ATiktokIcon height={64} width={64} className="cursor-pointer" /> },
@@ -39,10 +41,18 @@ const ASocials = () => {
 
   return (
     <ul className="grid gap-4 grid-cols-2 md:grid-cols-3">
-      {socials.map((soc) => (
-        <li
-          key={socials.indexOf(soc)}
+      {socials.map((soc, i) => (
+        <motion.li
+          key={i}
           className="flex flex-col justify-start bg-[#030] rounded-lg p-4 text-center h-full"
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            transition: {
+              delay: i / 3,
+              duration: 1,
+            },
+          }}
         >
           <Link
             className="flex flex-col gap-2 h-full origin-center hover:scale-[1.05]"
@@ -67,7 +77,7 @@ const ASocials = () => {
               </div>
             </div>
           </Link>
-        </li>
+        </motion.li>
       ))}
     </ul>
   );
