@@ -1,0 +1,32 @@
+{
+  "links": [
+    {
+      "name": {
+        "fr": "Portfolio",
+        "en": "My Work",
+        "th": "ผลงานของฉัน"
+      },
+      "url": "#portfolio",
+      "anchor": "#portfolio",
+      "aliases": ["portfolio"],
+      "target": "_self",
+      "hidden": false,
+      "mobileOnly": false,
+      "noMobile": false
+    },
+    {
+      "name": {
+        "fr": "À propos",
+        "en": "About",
+        "th": "ยวกับฉัน"
+      },
+      "url": "#contact",
+      "anchor": "#contact",
+      "aliases": ["apropos"],
+      "target": "_self",
+      "hidden": false,
+      "mobileOnly": false,
+      "noMobile": false
+    }
+  ]
+}

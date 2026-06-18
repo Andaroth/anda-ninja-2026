@@ -1,0 +1,333 @@
+@import "keyframes.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Courier New", Monospace, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    color: #000;
+    background: #0f0;
+}
+
+::selection {
+    color: #000;
+    background: #0f0;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+    opacity: 0.5;
+    border-radius: 4px;
+    transition: 0.25s ease;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #030;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0f0;
+}
+
+a {
+    color: #0f0 !important;
+    text-decoration: none;
+}
+
+a:hover,
+a.selected {
+    text-decoration: underline;
+}
+
+a.button {
+    text-decoration: none !important;
+}
+
+*.button {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    transition: 0.05s ease;
+}
+*.button:hover {
+    transform: scale(1.05);
+}
+*.button.disabled:hover {
+    transform: none !important;
+    cursor: initial;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*.asciiart {
+    font-family: "Courier New", Monospace;
+    line-height: 1.1em;
+    color: #0b0;
+}
+
+main {
+    background-color: linear-gradient(#000200, #000900);
+    background: #000900;
+    background: linear-gradient(140deg, #002000 0%, #000900 33%);
+    scrollbar-color: #0f0;
+    scrollbar-width: 8px;
+    z-index: 10;
+}
+
+main#darkgpt {
+    scrollbar-color: #f00;
+    background-color: linear-gradient(#010000, #030000);
+    background: linear-gradient(140deg, #100000 0%, #030000 33%);
+}
+
+div.menuElement {
+    z-index: 100;
+}
+
+main > * {
+    z-index: 10;
+}
+
+main > div {
+    max-width: 800px;
+    margin: 32px auto 0 auto;
+}
+
+main * {
+    z-index: 20;
+}
+
+main > div.scribe {
+    max-width: none;
+    width: calc(100vw - 148px);
+    margin: 0 auto;
+    position: fixed;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 10 !important;
+}
+
+main aside.customMatrix {
+    z-index: -1;
+}
+
+main > div > * {
+    width: 100%;
+    margin: 0 auto;
+}
+
+main p {
+    margin-top: 8px;
+}
+
+main > div:last-child > *:last-child:after {
+    content: " █";
+    animation: 2s infinite promptBlink;
+    transition: all 0s;
+}
+
+main > div.nodot:last-child > *:last-child:after {
+    content: "";
+    animation: none;
+    transition: none;
+}
+
+main h2.title:before {
+    content: "$> ";
+    color: #0bf;
+}
+
+main h3.title:before {
+    content: "~ ";
+    color: #f90;
+}
+
+main h2.title {
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+main h3.title {
+    font-size: 1.2em;
+    color: #aaa;
+}
+
+main h2.title a,
+main h3.title a {
+    color: #fff !important;
+    text-decoration: underline;
+}
+
+main h2.title a:hover,
+main h3.title a:hover {
+    color: #0f0 !important;
+    text-decoration: none;
+}
+
+main h3.title strong {
+    color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul.customList,
+ol.customList {
+    padding-inline-start: 18px !important;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+ul.customList > li,
+ol.customList > li {
+    list-style-type: "> ";
+    margin-bottom: 8px;
+}
+
+ul.customList > li p,
+ol.customList > li p {
+    margin-top: initial;
+}
+
+ul > li > div,
+ol > li > div {
+    margin-top: 16px;
+}
+
+p {
+    color: #aaa;
+}
+
+div.reading {
+    margin-top: 48px;
+}
+
+div.reading.force > div,
+div.reading > p,
+div.reading > small,
+div.reading > aside,
+div.reading > ol,
+div.reading > ul,
+div.reading > h1,
+div.reading > h2,
+div.reading > h3 {
+    max-width: 480px;
+}
+
+div.reading.wide > p,
+div.reading.wide > small,
+div.reading.wide > aside,
+div.reading.wide > ol,
+div.reading.wide > ul,
+div.reading.wide > h1,
+div.reading.wide > h2,
+div.reading.wide > h3 {
+    max-width: 800px;
+}
+
+code {
+    background: #304030;
+    color: #0f0;
+    font-family: "Courier New", Monospace;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+div.reader h1 {
+    font-size: 2em;
+    margin: 16px auto 8px auto;
+}
+
+div.reader h2 {
+    font-size: 1.7em;
+    margin: 16px auto 8px auto;
+}
+
+div.reader h3 {
+    font-size: 1.5em;
+    margin: 16px auto 8px auto;
+}
+
+div.reader h4 {
+    font-size: 1.3em;
+    margin: 16px auto 8px auto;
+}
+
+div.reader ul {
+    padding-inline-start: 28px !important;
+    list-style-image: initial;
+    list-style-type: decimal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    position: relative;
+    height: 24px;
+    width: 24px;
+    border: 2px solid #0f0;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+    padding: 4px;
+    color: #0f0;
+    border: 2px solid #0f0;
+    background: black;
+    border-radius: 4px;
+}
+
+label:hover {
+    text-decoration: underline;
+}
+label:hover p {
+    text-decoration: none !important;
+}
+
+.creation .thumbnail,
+.creation .technos {
+    transition: all 0.5s ease;
+    max-width: calc(100vw - 108px);
+}
+
+.creation:hover .thumbnail {
+    transform: scale(1.1);
+    opacity: 0.15;
+}
+.creation .technos {
+    opacity: 0;
+}
+.creation:hover .technos {
+    opacity: 1;
+}
+
+#globe-container canvas {
+    transform: translateX(-24px);
+}

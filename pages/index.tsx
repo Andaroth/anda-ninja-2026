@@ -1,0 +1,290 @@
+import Link from "next/link";
+import Image from "next/image";
+
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+
+import Ascii from "@/components/Ascii";
+
+import AButton from "@/components/a-button";
+
+import ASocials from "@/components/a-socials";
+import AServicesList from "@/components/a-services-list";
+
+import { ArticleType } from "@/data/types/blog";
+import { Article } from "@/db/Blog";
+
+import useStore from "@/store/global";
+
+import data from "@/data/chals.json";
+
+export const getStaticProps = (async (context) => {
+  const articles = await Article.getAll(3);
+  return { props: { articles } };
+}) satisfies GetServerSideProps<{
+  articles: Array<ArticleType>;
+}>;
+
+import { useTranslation } from "react-i18next";
+
+const Home = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
+  const { articles }: { articles: Array<ArticleType> } = props;
+  const keywords = articles.map((a) => a.title).flat();
+  const { t } = useTranslation();
+
+  const { lang } = useStore((state) => ({ lang: state.lang }));
+
+  const handleScrollTo = (e: any, anchor: string) => {
+    e.preventDefault();
+    const container = document.querySelector("main");
+    const domElement = document.querySelector(anchor);
+    if (container && domElement) {
+      container.scroll({
+        top:
+          container.scrollTop +
+          (domElement.getBoundingClientRect().top || 0) -
+          120,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const creations = [
+    {
+      name: "Vidyā AI",
+      description: "Homemade AI assistant",
+      url: "https://vidya.chat",
+      img: "/img/b2b/vidya.jpeg",
+      techs: [
+        "ElectronJS",
+        "OpenAI/BERT",
+        "ReactJS",
+        "NestJS",
+        "postgres",
+        "Azure",
+      ],
+    },
+    {
+      name: "NIKE",
+      description: "Web3 & Blockchain Apps",
+      url: "https://rtfkt.com",
+      img: "/img/b2b/rtfkt.jpeg",
+      techs: ["VueJS", "lit-element", "NodeJS", "etherjs", "MongoDB"],
+    },
+    {
+      name: "RTFKT",
+      description: "Crypto & NFT Minting",
+      url: "https://web.archive.org/web/20210616144208/https://cryptopunk.rtfkt.com/",
+      img: "/img/b2b/cryptopunk.jpeg",
+      techs: ["VueJS", "lit-element", "WebGL", "web3js", "OnChain DB"],
+    },
+    {
+      name: "Anda Ninja",
+      description: "Passing the cyber-security passion",
+      url: "https://anda.ninja",
+      img: "/img/b2b/andapirate.jpeg",
+      techs: ["NextJS", "ReactJS", "TailwindCSS", "Python", "postgres"],
+    },
+    {
+      name: "Hexofo",
+      description: "Web promotion agency",
+      url: "https://hexofo.com",
+      img: "/img/b2b/hexofo.jpeg",
+      techs: ["ReactJS", "NextJS", "Vercel"],
+    },
+    {
+      name: "Winnables",
+      description: "Blockchain trades & gambling",
+      url: "https://winnables.com",
+      img: "/img/b2b/winnables.jpeg",
+      techs: ["NextJS", "ReactJS", "TailwindCSS", "postgres"],
+    },
+    {
+      name: "iCure",
+      description: "Connecting people to health online",
+      url: "https://icure.com/fr/",
+      img: "/img/b2b/icure.jpeg",
+      techs: ["PolymerJS", "Kotlin", "eHealth gov API", "MySQL"],
+    },
+    {
+      name: "GameOfBlocks",
+      description: "Web3 Multiplayer Gaming",
+      url: "https://gameofblocks.io",
+      img: "/img/b2b/screenshot.jpeg",
+      techs: ["ReactJS", "Blitz", "etherjs", "express", "Ganache"],
+    },
+    {
+      name: "TimbTrack",
+      description: "Leading IoT innovation",
+      url: "https://timbtrack.com",
+      img: "/img/b2b/timbtrack.jpeg",
+      techs: ["VueJS", "PHP", "NodeJS", "GraphQL", "MySQL"],
+    },
+    {
+      name: "Sk8boarders",
+      description: "Tailoring pages at any scale",
+      url: "https://sk8boarders.be",
+      img: "/img/b2b/sk8boarders.jpeg",
+      techs: ["WordPress", "PHP", "HTML/CSS", "MySQL"],
+    },
+  ];
+
+  console.log("keywords", keywords);
+
+  const formatDate = (f: ArticleType) => {
+    function pad(num, size: number = 2) {
+      num = num.toString();
+      while (num.length < size) num = "0" + num;
+      return num;
+    }
+    const date = new Date(f.createdat);
+    const day = pad(date.getDate());
+    const month = pad(date.getMonth() + 1);
+    const year = pad(date.getFullYear());
+    return day + "/" + month + "/" + year;
+  };
+
+  const { chals } = data;
+  const visibleChals = () => chals.filter((c) => !c.hidden);
+
+  return (
+    <>
+      <div className="reading mb-2">
+        <Ascii fileName="anda-ninja" color="0F0" className="-z-10 h-0" />
+        <div className="flex flex-col max-h-[calc(100dvh-80px)]">
+          <div className="h-[30dvh]" />
+          <h2 className="title text-center">{t("dev.role")}</h2>
+          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 rounded-md p-4">
+            <p>
+              {t("dev.bio.0")}
+              <strong>{t("dev.bio.1")}</strong>
+              {t("dev.bio.2")}
+              <strong>{t("dev.bio.3")}</strong>
+              {t("dev.bio.4")}
+              <strong>{t("dev.bio.5")}</strong>
+              {t("dev.bio.6")}.
+            </p>
+            <AButton
+              className="!mx-2 mb-2 md:mb-0"
+              variant="dark"
+              onClick={(e) => handleScrollTo(e, "#portfolio")}
+            >
+              {t("dev.cta")}
+            </AButton>
+          </div>
+        </div>
+      </div>
+
+      <Ascii fileName="crown01" color="0F0" className="mt-12 -z-10" />
+
+      <div id="portfolio" className="reading mb-12">
+        <div className="flex flex-col gap-4">
+          <h2 className="title text-center mb-6">{t("portfolio.title")}</h2>
+          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md">
+            <p className="text-center w-full mx-auto">
+              {t("portfolio.paragraph.0")}
+              <strong>{t("portfolio.paragraph.1")}</strong>
+              {t("portfolio.paragraph.2")}
+              {t("portfolio.paragraph.3")}
+              <strong>{t("portfolio.paragraph.4")}</strong>.
+            </p>
+            <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
+              {creations.map((creation) => (
+                <Link
+                  className="creation rounded-md overflow-hidden flex flex-col cursor-pointer"
+                  key={creation.name}
+                  href={creation.url}
+                  target="_blank"
+                >
+                  <div className="flex p-4 bg-black">
+                    <h3 className="text-center w-full">@{creation.name}</h3>
+                  </div>
+                  <div className="w-full overflow-hidden aspect-video bg-black">
+                    <Image
+                      className="thumbnail w-full aspect-video"
+                      src={creation.img}
+                      alt={creation.name}
+                      width="350"
+                      height="200"
+                    />
+                    <div className="technos aspect-video transition-all z-100 rounded-b-lg -translate-y-[100%] cursor-pointer">
+                      <div className="flex flex-col h-full justify-center w-full">
+                        <div className="pl-8 text-lg text-white whitespace-pre-wrap">
+                          {creation.description}
+                        </div>
+                        {creation.techs.map((t, i) => (
+                          <div key={i} className="text-left text-sm pl-8">
+                            <strong className="text-white">&gt;</strong>&nbsp;
+                            {t}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <p className="text-center w-full mx-auto">
+              {t("portfolio.signature.0")}
+              <br />
+              {t("portfolio.signature.1")}
+            </p>
+            <div className="flex flex-col mt-4 md:flex-row justify-center md:mb-6">
+              <AButton
+                className="!mx-2 mb-2 md:mb-0"
+                variant="dark"
+                onClick={(e) => handleScrollTo(e, "#contact")}
+              >
+                {t("portfolio.cta")}
+              </AButton>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Ascii fileName="sword01" color="#888" className="mt-12 -z-10 h-24" />
+
+      <div className="reading" id="contact">
+        <div className="flex flex-col gap-4">
+          <img
+            src="./img/avatar.jpeg"
+            alt="me"
+            width={128}
+            className="rounded-full mx-auto z-11 relative"
+          />
+          <h2 className="title text-center mb-6">{t("about.title")}</h2>
+          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md">
+            <p className="text-center w-full">
+              {t("about.paragraph_a.0")}
+              <strong>{t("about.paragraph_a.1")}</strong>!<br />
+              {t("about.paragraph_a.2")}.
+            </p>
+            <p className="text-center w-full">
+              {t("about.paragraph_b.0")}
+              <strong>{t("about.paragraph_b.1")}</strong>
+              {t("about.paragraph_b.2")}&nbsp;
+              {t("about.paragraph_b.3")}
+              <strong>{t("about.paragraph_b.4")}</strong>
+            </p>
+            <p className="text-center w-full">
+              {t("about.paragraph_c.0")}&nbsp;
+              <strong>{t("about.paragraph_c.1")}</strong>!
+            </p>
+            <div>
+              <AButton
+                className="!mx-2 my-4 md:mb-0 !bg-[#0F0]"
+                variant="dark"
+                href="mailto:ax.fiolle@gmail.com"
+              >
+                <span className="!text-black">{t("about.cta")}</span>
+              </AButton>
+            </div>
+            <ASocials />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Home;

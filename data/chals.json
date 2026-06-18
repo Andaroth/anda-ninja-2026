@@ -1,0 +1,24 @@
+{
+  "chals": [
+    {
+      "name": "WTF 🏴‍☠️",
+      "href": "/wtf",
+      "hidden": false
+    },
+    {
+      "name": "PenteSQL 🔫",
+      "href": "/pentesql",
+      "hidden": false
+    },
+    {
+      "name": "Cicada 🔐",
+      "href": "/6kda",
+      "hidden": false
+    },
+    {
+      "name": "Fhtagn 🐙",
+      "href": "/fhtagn",
+      "hidden": false
+    }
+  ]
+}
