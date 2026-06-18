@@ -11,7 +11,6 @@ import useStore from "@/store/global";
 const ACursor: FC = () => {
   const pathname = usePathname();
   const theme = useStore((state) => state.theme);
-  const setMouse = useStore((state) => state.setMouse);
   const cursorContainer = useRef<HTMLDivElement>();
   const [hover, setHover] = useState(false);
   const [moved, setMoved] = useState(false);
@@ -56,7 +55,6 @@ const ACursor: FC = () => {
         setY(pageY);
         localStorage.setItem("mouseX", pageX);
         localStorage.setItem("mouseY", pageY);
-        // setMouse(pageX, pageY);
       });
     };
 

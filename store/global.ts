@@ -10,10 +10,6 @@ export type IAuthStoreValue = {
   cgu?: boolean;
   theme: themeNameType;
   lang?: AvailableLangs;
-  mouse: {
-    x: number;
-    y: number;
-  };
 };
 
 export const INIT_VALUES: IAuthStoreValue = {
@@ -21,10 +17,6 @@ export const INIT_VALUES: IAuthStoreValue = {
   cgu: false,
   theme: "default",
   lang: "en",
-  mouse: {
-    x: 0,
-    y: 0,
-  },
 };
 
 export type IAuthStoreAction = {
@@ -32,7 +24,6 @@ export type IAuthStoreAction = {
   setCgu: (cgu: boolean) => void;
   setTheme: (name: themeNameType) => void;
   setLang: (lang: AvailableLangs) => void;
-  setMouse: (x: number, y: number) => void;
   initStore: (assign?: IAuthStoreValue) => void;
 };
 
@@ -56,14 +47,6 @@ const handleSetLang = (set, lang: AvailableLangs) => {
   localStorage.setItem("lang", lang);
   set({ lang });
 };
-const handleSetMouse = (set, x: number, y: number) => {
-  set({
-    mouse: {
-      x,
-      y,
-    },
-  });
-};
 
 const handleInit = (set, assign?: IAuthStoreValue) => {
   const setter = Object.assign(INIT_VALUES, assign);
@@ -76,7 +59,6 @@ const useStore = create<IAuthStoreValue & IAuthStoreAction>((set) => ({
   setCgu: (cgu: boolean) => handleCetCgu(set, cgu),
   setTheme: (theme: themeNameType) => set(() => ({ theme })),
   setLang: (lang: AvailableLangs) => handleSetLang(set, lang),
-  setMouse: (x: number, y: number) => handleSetMouse(set, x, y),
   initStore: (assign?: IAuthStoreValue) => handleInit(set, assign),
 }));
 
