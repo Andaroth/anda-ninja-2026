@@ -75,7 +75,7 @@ const Home = () => {
     {
       name: "GameOfBlocks",
       description: "Web3 Multiplayer Gaming",
-      url: "https://gameofblocks.io",
+      url: "https://web.archive.org/web/20231003112245/https%3A%2F%2Fgameofblocks.io%2F",
       img: "/img/b2b/screenshot.jpeg",
       techs: ["ReactJS", "Blitz", "etherjs", "express", "Ganache"],
     },
