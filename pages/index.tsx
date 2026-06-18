@@ -69,9 +69,9 @@ const Home = () => {
       techs: ["VueJS", "lit-element", "WebGL", "web3js", "OnChain DB"],
     },
     {
-      name: "Anda Ninja",
+      name: "Anda Pirate",
       description: "Passing the cyber-security passion",
-      url: "https://anda.ninja",
+      url: "https://andapirate.com",
       img: "/img/b2b/andapirate.jpeg",
       techs: ["NextJS", "ReactJS", "TailwindCSS", "Python", "postgres"],
     },
