@@ -21,12 +21,14 @@ const AGlobe: FC = () => {
     const rotateView = () => {
       const latDelta = container.scrollTop / 30;
       const altDelta = container.scrollTop / 5000;
+      const x = Number(localStorage.getItem("mouseX") || "0") / 150;
+      const y = Number(localStorage.getItem("mouseY") || "0") / 150 / 3;
       if (globeElement?.current) {
         const el = globeElement.current as any;
         el.pointOfView({
-          lat: 30 - altDelta * 30,
-          lng: 4 + latDelta,
-          altitude: 3 - altDelta * 2,
+          lat: 30 - altDelta * 30 - y,
+          lng: 4 + latDelta + x,
+          altitude: 2.5 - altDelta * 2,
         });
       }
     };

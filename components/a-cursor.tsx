@@ -54,6 +54,8 @@ const ACursor: FC = () => {
       setTimeout(() => {
         setX(pageX);
         setY(pageY);
+        localStorage.setItem("mouseX", pageX);
+        localStorage.setItem("mouseY", pageY);
         // setMouse(pageX, pageY);
       });
     };
