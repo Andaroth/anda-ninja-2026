@@ -77,7 +77,7 @@ const AGlobe: FC = () => {
       {GlobeGL ? (
         <GlobeGL
           ref={globeElement}
-          globeImageUrl="https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
+          globeImageUrl="./img/earth-dark.jpg"
           arcsData={arcsData}
           arcColor="color"
           autoRotate={true}
@@ -87,7 +87,8 @@ const AGlobe: FC = () => {
           arcDashAnimateTime={() => Math.random() * 4000 + 500}
           backgroundColor={"rgba(0,0,0,0)"}
           hexPolygonsData={countries.features}
-          hexPolygonColor={() => "rgba(0,64,0,64)"}
+          hexPolygonAltitude={0.0025}
+          hexPolygonColor={() => "rgba(0,64,0,255)"}
           atmosphereColor={"rgba(0,164,0,255)"}
         />
       ) : (
