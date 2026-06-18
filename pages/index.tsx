@@ -113,7 +113,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="reading mb-2">
+      <div className="reading mb-2 !max-w-screen-xl">
         <motion.div
           initial={{ translateY: 64, opacity: 0 }}
           animate={{
@@ -127,26 +127,33 @@ const Home = () => {
         >
           <Ascii fileName="anda-ninja" color="0F0" className="-z-10 h-0" />
         </motion.div>
+
+        <div className="h-[30dvh] lg:h-[35vh]" />
         <div className="flex flex-col max-h-[calc(100dvh-80px)]">
-          <div className="h-[30dvh]" />
-          <h2 className="title text-center">{t("dev.role")}</h2>
-          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 rounded-md p-4">
-            <p>
-              {t("dev.bio.0")}
-              <strong>{t("dev.bio.1")}</strong>
-              {t("dev.bio.2")}
-              <strong>{t("dev.bio.3")}</strong>
-              {t("dev.bio.4")}
-              <strong>{t("dev.bio.5")}</strong>
-              {t("dev.bio.6")}.
-            </p>
-            <AButton
-              className="!mx-2 mb-2 md:mb-0"
-              variant="dark"
-              onClick={(e) => handleScrollTo(e, "#portfolio")}
-            >
-              {t("dev.cta")}
-            </AButton>
+          <div className="flex flex-row w-full justify-center lg:justify-end">
+            <div className="!max-w-screen-2xl">
+              <h2 className="title text-center lg:text-right">
+                {t("dev.role")}
+              </h2>
+              <div className="reading flex flex-col gap-8 bg-black/50 !border-y-2 !border-green-900 rounded-md p-4 shadow-lg !max-w-screen-2xl">
+                <p>
+                  {t("dev.bio.0")}
+                  <strong>{t("dev.bio.1")}</strong>
+                  {t("dev.bio.2")}
+                  <strong>{t("dev.bio.3")}</strong>
+                  {t("dev.bio.4")}
+                  <strong>{t("dev.bio.5")}</strong>
+                  {t("dev.bio.6")}.
+                </p>
+                <AButton
+                  className="!mx-2 mb-2 md:mb-0"
+                  variant="dark"
+                  onClick={(e) => handleScrollTo(e, "#portfolio")}
+                >
+                  {t("dev.cta")}
+                </AButton>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -156,7 +163,7 @@ const Home = () => {
       <div id="portfolio" className="reading mb-12">
         <div className="flex flex-col gap-4">
           <h2 className="title text-center mb-6">{t("portfolio.title")}</h2>
-          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md">
+          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md shadow-lg">
             <p className="text-center w-full mx-auto">
               {t("portfolio.paragraph.0")}
               <strong>{t("portfolio.paragraph.1")}</strong>
@@ -237,7 +244,7 @@ const Home = () => {
             }}
           />
           <h2 className="title text-center mb-6">{t("about.title")}</h2>
-          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md">
+          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md shadow-lg">
             <p className="text-center w-full">
               {t("about.paragraph_a.0")}
               <strong>{t("about.paragraph_a.1")}</strong>!<br />

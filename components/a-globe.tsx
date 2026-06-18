@@ -1,6 +1,8 @@
 "use client";
 
-import { FC, useRef, useState, useEffect } from "react";
+import { FC, useRef, useState, useEffect, useMemo } from "react";
+
+// import useStore from "@/store/global";
 
 import countries from "@/data/geo/countries.json";
 
@@ -9,6 +11,7 @@ const AGlobe: FC = () => {
   const globeElement = useRef();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
+    if (mounted && GlobeGL) return;
     GlobeGL = require("react-globe.gl").default;
     setMounted(true);
   }, []);
