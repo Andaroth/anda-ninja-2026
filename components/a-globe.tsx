@@ -21,8 +21,8 @@ const AGlobe: FC = () => {
     const rotateView = () => {
       const latDelta = container.scrollTop / 30;
       const altDelta = container.scrollTop / 5000;
-      const x = Number(localStorage.getItem("mouseX") || "0") / 150;
-      const y = Number(localStorage.getItem("mouseY") || "0") / 150 / 3;
+      const x = 0; // Number(localStorage.getItem("mouseX") || "0") / 150;
+      const y = 0; // Number(localStorage.getItem("mouseY") || "0") / 150 / 3;
       if (globeElement?.current) {
         const el = globeElement.current as any;
         el.pointOfView({
