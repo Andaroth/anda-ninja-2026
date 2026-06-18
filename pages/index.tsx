@@ -11,24 +11,14 @@ import ASocials from "@/components/a-socials";
 import AServicesList from "@/components/a-services-list";
 
 import { ArticleType } from "@/data/types/blog";
-import { Article } from "@/db/Blog";
 
 import useStore from "@/store/global";
 
 import data from "@/data/chals.json";
 
-export const getStaticProps = (async (context) => {
-  const articles = await Article.getAll(3);
-  return { props: { articles } };
-}) satisfies GetServerSideProps<{
-  articles: Array<ArticleType>;
-}>;
-
 import { useTranslation } from "react-i18next";
 
-const Home = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
-  const { articles }: { articles: Array<ArticleType> } = props;
-  const keywords = articles.map((a) => a.title).flat();
+const Home = () => {
   const { t } = useTranslation();
 
   const { lang } = useStore((state) => ({ lang: state.lang }));
@@ -128,8 +118,6 @@ const Home = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
       techs: ["WordPress", "PHP", "HTML/CSS", "MySQL"],
     },
   ];
-
-  console.log("keywords", keywords);
 
   const formatDate = (f: ArticleType) => {
     function pad(num, size: number = 2) {
@@ -274,7 +262,7 @@ const Home = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
               <AButton
                 className="!mx-2 my-4 md:mb-0 !bg-[#0F0]"
                 variant="dark"
-                href="mailto:ax.fiolle@gmail.com"
+                href={"mailto:" + process.env.NEXT_PUBLIC_EMAIL}
               >
                 <span className="!text-black">{t("about.cta")}</span>
               </AButton>

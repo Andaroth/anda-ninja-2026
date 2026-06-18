@@ -121,7 +121,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   const title = "Anda Ninja";
 
-  const description = t("home.description");
+  const description = "Creator of incredible interfaces since 2005";
 
   return (
     <>
