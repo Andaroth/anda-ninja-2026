@@ -29,7 +29,7 @@ const AFooter: FC = () => {
       <div className="flex mx-auto">
         <div className="flex flex-row">
           <p className="px-2 sm:border-r-2 border-[#030]">
-            &copy; &Delta;nda Pirate {new Date().getFullYear()}
+            &copy; Axel FIOLLE {new Date().getFullYear()}
           </p>
           <a
             className="hidden sm:block px-2"
