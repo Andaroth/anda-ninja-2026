@@ -52,24 +52,27 @@ const AGlobe: FC = () => {
       lng: 147.1803,
     },
   ];
-  const N = destinations.length * 20;
-  const colors = ["cyan", "blue", "aliceblue", "green"];
-  const arcsData = [...Array(N).keys()].map(() => {
-    const start = destinations[Math.floor(Math.random() * destinations.length)];
-    const dest = destinations[Math.floor(Math.random() * destinations.length)];
-    return {
-      startLat: start.lat,
-      startLng: start.lng,
-      endLat: dest.lat,
-      endLng: dest.lng,
-      color: [
-        colors[Math.floor(Math.random() * colors.length)],
-        colors[Math.floor(Math.random() * colors.length)],
-      ],
-      // facultatif: garder le nom de la destination pour debug/affichage
-      destination: dest.name,
-    };
-  });
+  const colors = ["cyan", "blue", "purple", "green", "green", "green"];
+  const arcsData = [];
+  for (let i = 1; i <= 20; i++) {
+    destinations.forEach((start) => {
+      // const start = destinations[Math.floor(Math.random() * destinations.length)];
+      const ds = destinations.filter((d) => d.name !== start.name);
+      const dest = ds[Math.floor(Math.random() * ds.length)];
+      arcsData.push({
+        startLat: start.lat,
+        startLng: start.lng,
+        endLat: dest.lat,
+        endLng: dest.lng,
+        color: [
+          colors[Math.floor(Math.random() * colors.length)],
+          colors[Math.floor(Math.random() * colors.length)],
+        ],
+        // facultatif: garder le nom de la destination pour debug/affichage
+        destination: dest.name,
+      });
+    });
+  }
 
   return (
     <div
@@ -83,13 +86,33 @@ const AGlobe: FC = () => {
         <GlobeGL
           ref={globeElement}
           globeImageUrl="./img/earth-dark.jpg"
+          // globeColor={"rgba(128,128,128,128)"}
+          // showGlobe={false}
           arcsData={arcsData}
           arcColor="color"
           autoRotate={true}
           autoRotateSpeed={10}
           arcDashLength={() => Math.random()}
-          arcDashGap={() => Math.random()}
+          arcDashGap={1}
+          arcDashInitialGap={() => Math.random()}
           arcDashAnimateTime={() => Math.random() * 4000 + 500}
+          // arcsTransitionDuration={0}
+          // polygonsData={countries.features.filter(
+          //   (d) => d.properties.ISO_A2 !== "AQ",
+          // )}
+          // polygonCapColor={"rgba(200, 0, 0, 0.6)"}
+          // polygonSideColor={"rgba(0, 100, 0, 0.05)"}
+          // polygonColor={"rgba(0,0,0,0)"}
+          // polygonsTransitionDuration={4000}
+          // polygonAltitude={(feat) =>
+          //   Math.max(0.1, Math.sqrt(+feat.properties.POP_EST) * 7e-5)
+          // }
+          ringsData={[{ lat: 90, lng: 0 }]}
+          ringAltitude={0.05}
+          ringMaxRadius={180}
+          ringPropagationSpeed={7}
+          ringRepeatPeriod={7000}
+          ringColor={() => "rgba(128,128,128,128)"}
           backgroundColor={"rgba(0,0,0,0)"}
           hexPolygonsData={countries.features}
           hexPolygonAltitude={0.0025}
