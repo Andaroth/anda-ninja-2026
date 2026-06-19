@@ -19,7 +19,7 @@ const AGlobe: FC = () => {
   useEffect(() => {
     const container = document.querySelector("main");
     const rotateView = () => {
-      const latDelta = container.scrollTop / 30;
+      const latDelta = container.scrollTop / 6.8;
       const altDelta = container.scrollTop / 5000;
       const x = 0; // Number(localStorage.getItem("mouseX") || "0") / 150;
       const y = 0; // Number(localStorage.getItem("mouseY") || "0") / 150 / 3;
@@ -74,6 +74,36 @@ const AGlobe: FC = () => {
     });
   }
 
+  const activeCountries = countries.features.filter((c) => {
+    const tags = [
+      "Belgium",
+      "France",
+      "Canada",
+      "United States of America",
+      "Italy",
+      "Japan",
+      "Israel",
+      "Palestine",
+      "Saudi Arabia",
+      "Nigeria",
+      "Egypt",
+      "Slovenia",
+      "Australia",
+      "Ukraine",
+      "Morocco",
+      "Algeria",
+      "Spain",
+      "Germany",
+      "United Kingdom",
+      "Thailand",
+      "Dem. Rep. Congo",
+      "Malaysia",
+      "China",
+      "Russia",
+    ];
+    return tags.includes(c.properties.NAME);
+  });
+
   return (
     <div
       id="globe-container"
@@ -86,8 +116,7 @@ const AGlobe: FC = () => {
         <GlobeGL
           ref={globeElement}
           globeImageUrl="./img/earth-dark.jpg"
-          // globeColor={"rgba(128,128,128,128)"}
-          // showGlobe={false}
+          bumpImageUrl="./img/earth-topology.jpg"
           arcsData={arcsData}
           arcColor="color"
           autoRotate={true}
@@ -96,28 +125,22 @@ const AGlobe: FC = () => {
           arcDashGap={1}
           arcDashInitialGap={() => Math.random()}
           arcDashAnimateTime={() => Math.random() * 4000 + 500}
-          // arcsTransitionDuration={0}
-          // polygonsData={countries.features.filter(
-          //   (d) => d.properties.ISO_A2 !== "AQ",
-          // )}
-          // polygonCapColor={"rgba(200, 0, 0, 0.6)"}
-          // polygonSideColor={"rgba(0, 100, 0, 0.05)"}
-          // polygonColor={"rgba(0,0,0,0)"}
-          // polygonsTransitionDuration={4000}
-          // polygonAltitude={(feat) =>
-          //   Math.max(0.1, Math.sqrt(+feat.properties.POP_EST) * 7e-5)
-          // }
+          arcsTransitionDuration={0}
           ringsData={[{ lat: 90, lng: 0 }]}
           ringAltitude={0.05}
           ringMaxRadius={180}
           ringPropagationSpeed={7}
           ringRepeatPeriod={7000}
-          ringColor={() => "rgba(128,128,128,128)"}
+          ringColor={() => "rgba(128,128,128,0.5)"}
           backgroundColor={"rgba(0,0,0,0)"}
-          hexPolygonsData={countries.features}
-          hexPolygonAltitude={0.0025}
-          hexPolygonColor={() => "rgba(0,64,0,255)"}
-          atmosphereColor={"rgba(0,164,0,255)"}
+          polygonsData={countries.features}
+          polygonCapColor={() => "rgba(0,172,0,0.25)"}
+          polygonSideColor={() => "rgba(0, 0, 0, 0)"}
+          polygonAltitude={() => 0.01}
+          hexPolygonsData={activeCountries}
+          hexPolygonAltitude={() => Math.random() / 20 + 0.02}
+          hexPolygonColor={() => "rgba(16,128,64,0.4)"}
+          atmosphereColor={"rgba(0,164,0,1)"}
         />
       ) : (
         <canvas></canvas>
