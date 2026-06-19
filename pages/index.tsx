@@ -125,7 +125,7 @@ const Home = () => {
             },
           }}
         >
-          <Ascii fileName="anda-ninja" color="0F0" className="-z-10 h-0" />
+          <Ascii fileName="andaroth02" color="#0F0" className="-z-10 h-0" />
         </motion.div>
 
         <div className="h-[30dvh] lg:h-[35vh]" />
@@ -158,7 +158,9 @@ const Home = () => {
         </div>
       </div>
 
-      <Ascii fileName="crown01" color="0F0" className="mt-12 -z-10" />
+      <Ascii fileName="rocket01" color="#FFF" className="mt-12" />
+
+      <Ascii fileName="world" color="#444" className="mt-12 -z-10" />
 
       <div id="portfolio" className="reading mb-12">
         <div className="flex flex-col gap-4">
@@ -225,26 +227,31 @@ const Home = () => {
         </div>
       </div>
 
-      <Ascii fileName="sword01" color="#888" className="mt-12 -z-10 h-24" />
-
-      <div className="reading" id="contact">
+      <div className="reading">
         <div className="flex flex-col gap-4">
-          <motion.img
-            src="./img/avatar.jpeg"
-            alt="me"
-            width={128}
-            className="rounded-full mx-auto z-11 relative"
-            initial={{ translateY: 64, opacity: 0 }}
+          <motion.div
+            initial={{ opacity: 0 }}
             whileInView={{
-              translateY: 0,
               opacity: 1,
               transition: {
                 duration: 1,
               },
+              repeatCount: 1,
             }}
-          />
-          <h2 className="title text-center mb-6">{t("about.title")}</h2>
-          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md shadow-lg">
+          >
+            <Ascii fileName="contact" color="#0C0" className="my-24" />
+          </motion.div>
+          <h2 className="title text-center hidden">{t("about.title")}</h2>
+          <div
+            id="contact"
+            className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md shadow-lg"
+          >
+            <img
+              src="./img/avatar.jpeg"
+              alt="me"
+              width={64}
+              className="rounded-full mx-auto z-11 relative -mb-4"
+            />
             <p className="text-center w-full">
               {t("about.paragraph_a.0")}
               <strong>{t("about.paragraph_a.1")}</strong>!<br />
@@ -272,6 +279,7 @@ const Home = () => {
             </div>
             <ASocials />
           </div>
+          <Ascii fileName="mail01" color="#FFF" />
         </div>
       </div>
     </>

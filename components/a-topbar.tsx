@@ -204,7 +204,7 @@ const ATopbar: FC = () => {
         <AButton
           className="!ml-2 !bg-[#0F0]"
           variant="dark"
-          onClick={(e) => handleScrollTo(e, "#contact")}
+          href={"mailto:" + process.env.NEXT_PUBLIC_EMAIL}
         >
           <span className="!text-black">{t("topbar.contact")}</span>
         </AButton>

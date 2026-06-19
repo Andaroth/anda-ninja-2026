@@ -19,7 +19,7 @@ const AGlobe: FC = () => {
   useEffect(() => {
     const container = document.querySelector("main");
     const rotateView = () => {
-      const latDelta = container.scrollTop / 6.8;
+      const latDelta = container.scrollTop / 9;
       const altDelta = container.scrollTop / 5000;
       const x = 0; // Number(localStorage.getItem("mouseX") || "0") / 150;
       const y = 0; // Number(localStorage.getItem("mouseY") || "0") / 150 / 3;
