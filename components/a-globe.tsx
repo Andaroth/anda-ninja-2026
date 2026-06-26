@@ -116,7 +116,7 @@ const AGlobe: FC = () => {
         <GlobeGL
           ref={globeElement}
           globeImageUrl="./img/earth-dark.jpg"
-          bumpImageUrl="./img/earth-topology.jpg"
+          bumpImageUrl="./img/earth-topology.png"
           arcsData={arcsData}
           arcColor="color"
           autoRotate={true}
