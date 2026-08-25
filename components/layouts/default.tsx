@@ -27,9 +27,10 @@ interface Props {
 
 const DefaultLayout: FC<Props> = ({ children }) => {
   const router = useRouter();
-  const { theme, setTheme } = useStore((state) => ({
+  const { theme, setTheme, globe } = useStore((state) => ({
     theme: state.theme,
     setTheme: state.setTheme,
+    globe: state.globe,
   }));
   const mainRef = useRef<HTMLDivElement>();
   const pathname = usePathname();
@@ -68,6 +69,7 @@ const DefaultLayout: FC<Props> = ({ children }) => {
   }, [mainRef]);
 
   const shouldDisplayEffects = () => !pathname.includes("mobile-view-source");
+  const shouldEnableGlobe = () => pathname.includes("map");
 
   useEffect(() => setTheme("default"), [pathname]);
 
@@ -94,7 +96,12 @@ const DefaultLayout: FC<Props> = ({ children }) => {
           pathname.includes("mobile-view-source") ? "!overflow-x-auto" : "",
         )}
       >
-        <AGlobe />
+        <AGlobe
+          classNames={shouldEnableGlobe() ? "" : "pointer-events-none"}
+          lat={globe.lat}
+          lng={globe.lng}
+          zoom={globe.zoom}
+        />
         {/*<div className="scribe flex flex-row justify-center select-none pointer-events-none fixed bottom-10 md:bottom-16 opacity-30">
           <Image
             src={LogoSvg}
@@ -106,23 +113,7 @@ const DefaultLayout: FC<Props> = ({ children }) => {
         </div>*/}
         {children}
         <Matrix
-          chars={[
-            "0",
-            "1",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-          ]}
+          chars={["0","1","3","4","5","6","7","8","9","A","B","C","D","E","F"]}
           theme={"default"}
         />
       </main>

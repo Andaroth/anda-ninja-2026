@@ -218,7 +218,11 @@ const ATopbar: FC = () => {
       <aside className="flex flex-col justify-center">
         <Link
           href=""
-          onClick={(e) => handleScrollTo(e, "#_")}
+          onClick={(e) =>
+            pathname.split("#")[0] == "/"
+              ? handleScrollTo(e, "#_")
+              : router.push("/")
+          }
           className={theme === "red" ? "!text-[red]" : ""}
         >
           <p className="hidden">Anda Ninja</p>
@@ -255,7 +259,13 @@ const ATopbar: FC = () => {
                           : l.url
                       }
                       onClick={(e) =>
-                        l.anchor ? handleScrollTo(e, l.anchor) : null
+                        l.anchor
+                          ? () => {
+                              pathname.split("#")[0] == "/"
+                                ? handleScrollTo(e, l.anchor)
+                                : router.push("/" + (l.url || l.anchor));
+                            }
+                          : null
                       }
                       target={l.target}
                     >

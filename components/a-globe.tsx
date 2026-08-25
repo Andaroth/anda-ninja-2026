@@ -1,14 +1,32 @@
 "use client";
 
 import { FC, useRef, useState, useEffect, useMemo } from "react";
+import cn from "classnames";
 
+import { usePathname } from "next/navigation";
 // import useStore from "@/store/global";
 
 import countries from "@/data/geo/countries.json";
+import destinations from "@/data/geo/destinations.json";
+
+interface AGlobeProps {
+  classNames?: string;
+  lat?: number;
+  lng?: number;
+  zoom?: number;
+}
 
 let GlobeGL: any;
-const AGlobe: FC = () => {
+const AGlobe: FC<AGlobeProps> = ({
+  classNames,
+  lat,
+  lng,
+  zoom,
+}: AGlobeProps) => {
   const globeElement = useRef();
+  const pathname = usePathname();
+
+  // mount component
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     if (mounted && GlobeGL) return;
@@ -16,9 +34,11 @@ const AGlobe: FC = () => {
     setMounted(true);
   }, []);
 
+  // rotate view on scroll
   useEffect(() => {
     const container = document.querySelector("main");
     const rotateView = () => {
+      if (pathname?.includes("map")) return;
       const latDelta = container.scrollTop / 9;
       const altDelta = container.scrollTop / 5000;
       const x = 0; // Number(localStorage.getItem("mouseX") || "0") / 150;
@@ -26,9 +46,9 @@ const AGlobe: FC = () => {
       if (globeElement?.current) {
         const el = globeElement.current as any;
         el.pointOfView({
-          lat: 30 - altDelta * 30 - y,
-          lng: 4 + latDelta + x,
-          altitude: 2.5 - altDelta * 2,
+          lat: lat || 30 - altDelta * 30 - y,
+          lng: lng || 4 + latDelta + x,
+          altitude: zoom || 2.5 - altDelta * 2,
         });
       }
     };
@@ -38,20 +58,6 @@ const AGlobe: FC = () => {
 
   if (!mounted) return <></>;
 
-  const destinations = [
-    { name: "Brussels, Belgium", lat: 50.8503, lng: 4.3517 },
-    { name: "New York, USA", lat: 40.7128, lng: -74.006 },
-    { name: "Malte", lat: 35.9375, lng: 14.3754 },
-    { name: "Bangkok, Thaïlande", lat: 13.7563, lng: 100.5018 },
-    { name: "Kinshasa, RDC (capitale)", lat: -4.4419, lng: 15.2663 },
-    { name: "Moscou, Russie", lat: 55.7558, lng: 37.6173 },
-    { name: "Montevideo, Uruguay", lat: -34.9011, lng: -56.1645 },
-    {
-      name: "Nouvelle-Guinée (Port Moresby approx.)",
-      lat: -9.4438,
-      lng: 147.1803,
-    },
-  ];
   const colors = ["cyan", "blue", "purple", "green", "green", "green"];
   const arcsData = [];
   for (let i = 1; i <= 20; i++) {
@@ -107,7 +113,10 @@ const AGlobe: FC = () => {
   return (
     <div
       id="globe-container"
-      className="fixed left-[18px] top-[70px] pointer-events-none overflow-hidden !max-w-max !max-h-max !m-0 !w-[calc(100vw-36px)] !h-[calc(100dvh-112px)] z-10 !border-3 !border-transparent"
+      className={cn(
+        "fixed left-[18px] top-[70px] overflow-hidden !max-w-max !max-h-max !m-0 !w-[calc(100vw-36px)] !h-[calc(100dvh-112px)] z-10 !border-3 !border-transparent",
+        classNames,
+      )}
       style={{
         borderRadius: ".125rem",
       }}

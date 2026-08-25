@@ -103,7 +103,7 @@ const ACursor: FC = () => {
           `text-[11px] left-[4px] -top-[20px]`,
           moved ? "opacity-1" : "opacity-0",
         )}
-        style={{ color: textColors() }}
+        style={{ color: crossColor || textColors() }}
       >
         x/{x}
         <br />

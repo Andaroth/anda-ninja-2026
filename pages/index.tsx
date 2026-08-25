@@ -162,18 +162,29 @@ const Home = () => {
 
       <Ascii fileName="world" color="#444" className="mt-12 -z-10" />
 
-      <div id="portfolio" className="reading mb-12">
+      <div id="portfolio" className="reading mb-12 full">
         <div className="flex flex-col gap-4">
-          <h2 className="title text-center mb-6">{t("portfolio.title")}</h2>
-          <div className="reading flex flex-col mx-auto gap-8 bg-black/50 p-4 rounded-md shadow-lg">
-            <p className="text-center w-full mx-auto">
+          <h2 className="title text-center mb-6 md:!text-4xl">{t("portfolio.title")}</h2>
+          <div className="reading flex flex-col w-full gap-8 bg-black px-4 py-12 rounded-md shadow-lg tweaks">
+            <p className="text-center w-[800px] mx-auto">
               {t("portfolio.paragraph.0")}
               <strong>{t("portfolio.paragraph.1")}</strong>
               {t("portfolio.paragraph.2")}
               {t("portfolio.paragraph.3")}
               <strong>{t("portfolio.paragraph.4")}</strong>.
             </p>
-            <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
+            <motion.div
+              className="grid gap-2 grid-cols-1 sm:grid-cols-2 w-[800px] mx-auto"
+              initial={{ translateY: 16 }}
+              whileInView={{
+                translateY: 0,
+                transition: {
+                  delay: 1 / 2,
+                  duration: 1 / 2,
+                },
+                repeatCount: 1,
+              }}
+            >
               {creations.map((creation) => (
                 <Link
                   className="creation rounded-md overflow-hidden flex flex-col cursor-pointer"
@@ -208,7 +219,7 @@ const Home = () => {
                   </div>
                 </Link>
               ))}
-            </div>
+            </motion.div>
             <p className="text-center w-full mx-auto">
               {t("portfolio.signature.0")}
               <br />

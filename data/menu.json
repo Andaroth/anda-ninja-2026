@@ -6,7 +6,7 @@
         "en": "My Work",
         "th": "ผลงานของฉัน"
       },
-      "url": "#portfolio",
+      "url": "/#portfolio",
       "anchor": "#portfolio",
       "aliases": ["portfolio"],
       "target": "_self",
@@ -20,7 +20,7 @@
         "en": "About",
         "th": "ยวกับฉัน"
       },
-      "url": "#contact",
+      "url": "/#contact",
       "anchor": "#contact",
       "aliases": ["apropos"],
       "target": "_self",

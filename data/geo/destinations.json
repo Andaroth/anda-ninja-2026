@@ -1,0 +1,14 @@
+[
+  { "name": "Brussels, Belgium", "lat": 50.8503, "lng": 4.3517 },
+  { "name": "New York, USA", "lat": 40.7128, "lng": -74.006 },
+  { "name": "Malte", "lat": 35.9375, "lng": 14.3754 },
+  { "name": "Bangkok, Thaïlande", "lat": 13.7563, "lng": 100.5018 },
+  { "name": "Kinshasa, RDC (capitale)", "lat": -4.4419, "lng": 15.2663 },
+  { "name": "Moscou, Russie", "lat": 55.7558, "lng": 37.6173 },
+  { "name": "Montevideo, Uruguay", "lat": -34.9011, "lng": -56.1645 },
+  {
+    "name": "Nouvelle-Guinée (Port Moresby approx.)",
+    "lat": -9.4438,
+    "lng": 147.1803
+  }
+]

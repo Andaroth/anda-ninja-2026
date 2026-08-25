@@ -27,7 +27,7 @@ import LogoTape from "@/assets/logo_andatape.svg";
 
 import { isMobile } from "react-device-detect";
 
-import "@/styles/global.css";
+import "@/styles/global.scss";
 import "tailwindcss/tailwind.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -40,17 +40,19 @@ const App = ({ Component, pageProps }: AppProps) => {
     setCgu: state.setCgu,
     setLang: state.setLang,
   }));
-  const [ready, setReady] = useState(true);
+  const [ready, setReady] = useState(false);
 
   const [langModal, showLangModal] = useState(false);
 
-  useEffect(
-    () =>
-      initStore({
-        theme: !pathName.includes("darkgpt") ? "default" : "red",
-      }),
-    [],
-  );
+  useEffect(() => {
+    initStore({
+      theme: !pathName.includes("darkgpt") ? "default" : "red",
+      globe: { lat: null, lng: null, zoom: null }
+    })
+    setTimeout(() => {
+      setReady(true)
+    }, 2000)
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("discord_account")) {
