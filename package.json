@@ -22,7 +22,7 @@
     "zustand": "^4.5.4"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=24"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
