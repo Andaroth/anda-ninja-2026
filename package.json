@@ -17,6 +17,7 @@
     "react-dom": "18.2.0",
     "react-globe.gl": "^2.38.0",
     "react-i18next": "^15.0.1",
+    "sass": "^1.103.1",
     "showdown": "^2.1.0",
     "zustand": "^4.5.4"
   },
